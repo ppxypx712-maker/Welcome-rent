@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#060a17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>WELCOME ARENDA - PUBG Mobile Akkauntlar Arendasi | Rasmiy Platforma</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body class="gaming-theme">
+
+  <!-- Background Video for Desktop & Mobile -->
+  <div class="video-bg-container">
+    <video id="bg-video" autoplay muted loop playsinline poster="/assets/hero-bg.jpg">
+      <source src="/assets/bg-video.mp4" type="video/mp4">
+      <source src="/assets/bg-video.webm" type="video/webm">
+    </video>
+    <div class="video-bg-overlay"></div>
+  </div>
+
+  <!-- ================= 1. INTRO SPLASH / PRELOADER ================= -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-bg-glow"></div>
+    <div class="splash-particles" id="splash-particles"></div>
+
+    <div class="splash-content">
+      <div class="splash-logo-wrap">
+        <div class="logo-cyber-ring"></div>
+        <img src="/assets/logo.jpg" alt="WELCOME ARENDA Logo" class="splash-logo-img">
+      </div>
+
+      <div class="splash-badge">
+        <i class="fa-solid fa-gamepad"></i> PUBG MOBILE ARENDA PLATFORM
+      </div>
+
+      <h1 class="splash-title">
+        <span class="glitch-text" data-text="WELCOME ARENDA">WELCOME ARENDA</span>
+        <span class="splash-sub-text">WEB SAYTGA XUSH KELIBSIZ 😊</span>
+      </h1>
+
+      <div class="splash-loader-bar">
+        <div class="splash-progress" id="splash-progress"></div>
+      </div>
+
+      <div class="splash-status">
+        <span id="splash-status-text">Tizim yuklanmoqda...</span>
+        <span id="splash-percent">0%</span>
+      </div>
+
+      <button id="skip-splash-btn" class="cyber-btn-outline small">
+        O'tkazib yuborish <i class="fa-solid fa-angles-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= 2. AUTH SCREEN (LOGIN / REGISTER) ================= -->
+  <div id="auth-screen" class="auth-screen hidden">
+    <div class="auth-card-backdrop"></div>
+
+    <div class="auth-container">
+      <div class="auth-card glass-panel" style="position:relative;">
+        <button class="modal-close-btn" onclick="closeAuthModal()" style="position:absolute; top:1rem; right:1rem;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="auth-header">
+          <img src="/assets/logo.jpg" alt="Welcome Arenda" class="auth-logo">
+          <h2 class="auth-title">WELCOME ARENDA</h2>
+          <p class="auth-desc">Akkauntlarni ko'rish, hisoblash va arendaga olish uchun kiring</p>
+        </div>
+
+        <!-- Auth Tabs -->
+        <div class="auth-tabs">
+          <button id="tab-login-btn" class="auth-tab active" onclick="switchAuthTab('login')">
+            <i class="fa-solid fa-right-to-bracket"></i> Kirish
+          </button>
+          <button id="tab-register-btn" class="auth-tab" onclick="switchAuthTab('register')">
+            <i class="fa-solid fa-user-plus"></i> Ro'yxatdan o'tish
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+          <div class="input-group">
+            <label><i class="fa-solid fa-user"></i> Login / Username</label>
+            <div class="input-field-wrap">
+              <input type="text" id="login-username" placeholder="Masalan: Welcome_rent" required
+                autocomplete="username">
+              <span class="input-icon"><i class="fa-solid fa-id-badge"></i></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label><i class="fa-solid fa-lock"></i> Parol</label>
+            <div class="input-field-wrap">
+              <input type="password" id="login-password" placeholder="Parolingizni kiriting" required
+                autocomplete="current-password">
+              <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility('login-password')">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="cyber-btn primary full-width">
+            <span>TIZIMGA KIRISH</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form hidden">
+          <div class="input-group">
+            <label><i class="fa-solid fa-user-tag"></i> Ismingiz / Taxallus</label>
+            <div class="input-field-wrap">
+              <input type="text" id="reg-name" placeholder="Ismingizni yozing" required>
+              <span class="input-icon"><i class="fa-solid fa-signature"></i></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label><i class="fa-brands fa-telegram"></i> Telegram Username</label>
+            <div class="input-field-wrap">
+              <input type="text" id="reg-telegram" placeholder="@username" required>
+              <span class="input-icon"><i class="fa-brands fa-telegram"></i></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label><i class="fa-solid fa-user-lock"></i> Yangi Login</label>
+            <div class="input-field-wrap">
+              <input type="text" id="reg-username" placeholder="Login yarating" required>
+              <span class="input-icon"><i class="fa-solid fa-user"></i></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label><i class="fa-solid fa-key"></i> Yangi Parol</label>
+            <div class="input-field-wrap">
+              <input type="password" id="reg-password" placeholder="Kamida 4 ta belgi" minlength="4" required>
+              <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility('reg-password')">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="cyber-btn success full-width">
+            <span>RO'YXATDAN O'TISH</span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </form>
+
+        <div class="auth-footer-info">
+          <p><i class="fa-solid fa-circle-info"></i> Xavfsiz va ishonchli PUBG Mobile arenda platformasi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3. MAIN DASHBOARD APPLICATION ================= -->
+  <div id="main-app" class="main-app hidden">
+
+    <!-- Navbar -->
+    <header class="cyber-header">
+      <div class="container header-container">
+        <div class="brand-wrap">
+          <img src="/assets/logo.jpg" alt="Welcome Arenda" class="brand-logo">
+          <div class="brand-text">
+            <span class="brand-title">WELCOME ARENDA</span>
+            <span class="brand-tagline">PUBG MOBILE VERIFIED ACCOUNTS</span>
+          </div>
+        </div>
+
+        <!-- Quick Nav Links on Desktop -->
+        <nav class="header-nav-links hide-mobile">
+          <a href="#accounts-section" class="nav-link"><i class="fa-solid fa-gamepad"></i> Akkauntlar</a>
+          <a href="#faq-section" class="nav-link"><i class="fa-solid fa-circle-question"></i> Qoidalar & FAQ</a>
+        </nav>
+
+        <div class="header-actions">
+          <!-- Favorites Pill -->
+          <button id="nav-fav-btn" class="cyber-icon-btn fav-badge-btn" title="Sevimlilar"
+            onclick="filterByFavorites()">
+            <i class="fa-solid fa-heart"></i>
+            <span class="badge-pill" id="nav-fav-count">0</span>
+          </button>
+
+          <!-- Compare Pill -->
+          <button id="nav-compare-btn" class="cyber-icon-btn compare-badge-btn hidden" title="Taqqoslash"
+            onclick="openCompareModal()">
+            <i class="fa-solid fa-code-compare"></i>
+            <span class="badge-pill" id="nav-compare-count">0</span>
+          </button>
+
+          <a href="https://t.me/+c-ZCoeaTolcwY2M6" target="_blank" rel="noopener noreferrer"
+            class="cyber-link-btn telegram-pill">
+            <i class="fa-brands fa-telegram"></i>
+            <span class="hide-mobile">Kanalimiz</span>
+          </a>
+
+          <button id="qr-modal-btn" class="cyber-icon-btn" title="Telefonda ochish">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </button>
+
+          <button id="audio-toggle-btn" class="cyber-icon-btn" title="Ovozni yoqish/o'chirish">
+            <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+          </button>
+
+          <!-- User badge dropdown -->
+          <div class="user-profile-badge" id="user-profile-badge" onclick="openAuthModal()" title="Profil / Kirish">
+            <div class="user-avatar" id="user-avatar">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="user-info hide-mobile">
+              <span class="user-name" id="display-user-name">Welcome_rent</span>
+              <span class="user-role-tag" id="display-user-role">ADMIN</span>
+            </div>
+            <button id="logout-btn" class="logout-btn" title="Chiqish"
+              onclick="event.stopPropagation(); handleLogout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cyber-main container">
+
+      <!-- Hero Banner -->
+      <section class="hero-section glass-panel">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span> TOP DARAJADAGI PUBG MOBILE AKKAUNTLARI
+          </div>
+          <h2 class="hero-title">
+            O'ZINGIZGA MOS <span class="neon-blue-text">PUBG AKKAUNTNI</span> TANLANG VA ARENDAGA OLING
+          </h2>
+          <p class="hero-subtitle">
+            Eksklyuziv X-Suit, Glacier M416, mashina skinlari, qulay tariflar va hamyonbop narxlar. Telegram orqali 24/7
+            tezkor xizmat!
+          </p>
+
+          <!-- Quick Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon vip-icon"><i class="fa-solid fa-crown"></i></div>
+              <div class="stat-info">
+                <span class="stat-value" id="stat-vip-count">12</span>
+                <span class="stat-label">VIP Akkauntlar</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon top-icon"><i class="fa-solid fa-fire"></i></div>
+              <div class="stat-info">
+                <span class="stat-value" id="stat-top-count">7</span>
+                <span class="stat-label">TOP Akkauntlar</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon cheap-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div class="stat-info">
+                <span class="stat-value" id="stat-cheap-count">9</span>
+                <span class="stat-label">CHEAP Akkauntlar</span>
+              </div>
+            </div>
+
+            <div class="stat-card stat-highlight">
+              <div class="stat-icon free-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="stat-info">
+                <span class="stat-value text-green" id="stat-free-count">0</span>
+                <span class="stat-label">Hozirda Bo'sh</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admin Bar (Visible only when logged in as Admin) -->
+      <section id="admin-action-bar" class="admin-action-bar glass-panel hidden">
+        <div class="admin-bar-left">
+          <span class="admin-mode-pill"><i class="fa-solid fa-shield"></i> ADMIN BOSHQARUV REJIMI</span>
+          <span class="admin-help-text">Akkaunt holatini o'zgartirish uchun kartochkadagi <b>BO'SH / BAND</b> tugmasini
+            bosing.</span>
+        </div>
+        <div class="admin-bar-right">
+          <button id="add-account-btn" class="cyber-btn success small">
+            <i class="fa-solid fa-plus"></i> Yangi Akkaunt Qo'shish
+          </button>
+          <button id="reset-defaults-btn" class="cyber-btn-outline small">
+            <i class="fa-solid fa-rotate-left"></i> Asliga qaytarish
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 4. FILTERING SYSTEM ================= -->
+      <section class="filters-section" id="accounts-section">
+
+        <!-- Search Input FIRST (prominent, like screenshot 2) -->
+        <div class="search-input-wrap search-top">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="search-input" placeholder="Akkaunt nomi, skin yoki ID bo'yicha qidirish...">
+          <button id="clear-search-btn" class="clear-search-btn hidden">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Active Filter Indicator & Summary -->
+        <div class="filter-summary-bar">
+          <div class="current-filter-badge" id="current-filter-info">
+            Ko'rsatilmoqda: <strong id="filter-status-desc">BARCHA TOIFALAR</strong>
+          </div>
+          <div class="results-count-text">
+            Topildi: <span id="filtered-count">28</span> ta akkaunt
+          </div>
+        </div>
+
+        <!-- Category Selector -->
+        <div class="category-tabs-wrapper">
+          <div class="category-tabs">
+            <button class="cat-tab-btn active" data-category="ALL" id="cat-btn-all">
+              <span>All</span>
+            </button>
+
+            <button class="cat-tab-btn" data-category="FREE_ONLY" id="cat-btn-free">
+              <span>BO'SH</span>
+            </button>
+
+            <button class="cat-tab-btn" data-category="VIP" id="cat-btn-vip">
+              <span>VIP</span>
+            </button>
+
+            <button class="cat-tab-btn" data-category="TOP" id="cat-btn-top">
+              <span>TOP</span>
+            </button>
+
+            <button class="cat-tab-btn" data-category="CHEAP" id="cat-btn-cheap">
+              <span>CHEAP</span>
+            </button>
+
+            <button class="cat-tab-btn fav-tab" data-category="FAVORITES" id="cat-btn-fav">
+              <i class="fa-solid fa-heart text-pink"></i>
+              <span>Sevimlilar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Tag Filter Chips -->
+        <div class="tag-chips-wrapper">
+          <div class="tag-chips-label"><i class="fa-solid fa-tags"></i> Tezkor filtrlar:</div>
+          <div class="tag-chips-list" id="tag-chips-list">
+            <button class="tag-chip active" data-tag="all">✨ Hammasi</button>
+            <button class="tag-chip" data-tag="xsuit">👑 X-Suit Max 7</button>
+            <button class="tag-chip" data-tag="supercar">🏎️ Super Car</button>
+            <button class="tag-chip" data-tag="glacier">❄️ Lavina / Glacier</button>
+            <button class="tag-chip" data-tag="mumiya">🧟 Mumiya / Bape</button>
+            <button class="tag-chip" data-tag="prok">🎯 100+ Prokachka</button>
+            <button class="tag-chip" data-tag="budget">⚡ Hamyonbop (40k gacha)</button>
+          </div>
+        </div>
+
+        <!-- Status, Sorting Row -->
+        <div class="filter-controls-row">
+
+          <!-- BO'SH / ALL STATUS Toggle Button -->
+          <div class="status-filter-group">
+            <button id="filter-free-only-btn" class="status-toggle-btn"
+              title="Faqat bo'sh bo'lgan akkauntlarni ko'rsatish">
+              <span class="status-indicator-dot"></span>
+              <span class="status-btn-text">BO'SH AKKAUNTLAR</span>
+              <i class="fa-solid fa-filter"></i>
+            </button>
+
+            <div class="status-pills-wrap">
+              <button class="status-pill-btn active" data-status="ALL">Hammasi</button>
+              <button class="status-pill-btn" data-status="free">🟢 Bo'sh</button>
+              <button class="status-pill-btn" data-status="busy">🔴 Band</button>
+            </div>
+          </div>
+
+          <!-- Sorting Dropdown -->
+          <div class="sort-select-wrap">
+            <i class="fa-solid fa-arrow-down-short-wide sort-icon"></i>
+            <select id="sort-select" class="cyber-select" onchange="handleSortChange(this.value)">
+              <option value="default">⚡ Standart tartib</option>
+              <option value="price-asc">💵 Narx: Arzonroqdan</option>
+              <option value="price-desc">💎 Narx: Qimmatroqdan</option>
+              <option value="mifik-desc">🔥 Eng ko'p Mifiklar</option>
+              <option value="cars-desc">🏎️ Eng ko'p Supercarlar</option>
+              <option value="col-desc">🔝 Yuqori Collection %</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================= 5. ACCOUNTS GRID ================= -->
+      <section class="accounts-section">
+        <div class="accounts-grid" id="accounts-grid">
+          <!-- Dynamically populated cards will appear here -->
+        </div>
+
+        <!-- Empty state placeholder -->
+        <div id="no-results-state" class="empty-state glass-panel hidden">
+          <i class="fa-solid fa-gamepad empty-icon"></i>
+          <h3>Akkauntlar topilmadi</h3>
+          <p>Tanlangan filtrlar bo'yicha hozircha mos keluvchi akkaunt mavjud emas.</p>
+          <button class="cyber-btn primary small" onclick="resetAllFilters()">
+            <i class="fa-solid fa-rotate-left"></i> Filtrlarni tozalash
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 6. FAQ & ARENDA QOIDALARI ================= -->
+      <section class="faq-section glass-panel" id="faq-section">
+        <div class="faq-header">
+          <div class="section-sub-badge"><i class="fa-solid fa-shield-check"></i> XAVFSIZ VA ISHONCHLI</div>
+          <h3 class="section-main-title">Ko'p So'raladigan <span class="neon-cyan-text">Savollar</span> & Qoidalar</h3>
+          <p class="section-desc">Arenda jarayoni, to'lovlar va xavfsizlik kafolatlari bo'yicha to'liq qo'llanma</p>
+        </div>
+
+        <div class="faq-accordion" id="faq-accordion">
+          <!-- Accordion Items -->
+          <div class="faq-item active">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span><i class="fa-solid fa-key text-cyan"></i> 1. Akkaunt qanday arendaga olinadi?</span>
+              <i class="fa-solid fa-chevron-down faq-arrow"></i>
+            </button>
+            <div class="faq-answer">
+              <p>O'zingizga ma'qul bo'lgan akkauntni tanlang va <b>"ARENDAGA OLISH"</b> tugmasini bosing. Kerakli tarif
+                paketini (3 soat, Kunduzgi, Tungi yoki 24 soat) tanlab, <b>"Adminga Yozish"</b> tugmasini bosing. Admin
+                <b>@WELCOME_ARENDA</b> sizga darhol javob beradi va to'lovdan so'ng kirish ma'lumotlarini taqdim etadi.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span><i class="fa-solid fa-credit-card text-gold"></i> 2. Qanday to'lov usullari mavjud?</span>
+              <i class="fa-solid fa-chevron-down faq-arrow"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Bizda barcha ommabop to'lov usullari qabul qilinadi: <b>Click, Payme, Visa</b>. To'lov 100% xavfsiz va
+                tezkor amalga oshiriladi.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span><i class="fa-solid fa-shield-halved text-red"></i> 3. Qoidalar va xavfsizlik talablari
+                qanday?</span>
+              <i class="fa-solid fa-chevron-down faq-arrow"></i>
+            </button>
+            <div class="faq-answer">
+              <p><b>QAT'IYAN TAQIQLANADI:</b> Har qanday chit, script, gfx tool yoki noqonuniy dasturlardan foydalanish;
+                Akkaunt paroli, ulanishlari yoki ma'lumotlarini o'zgartirishga urinish. Qoidabuzarlik aniqlansa, arenda
+                bekor qilinadi va to'lov qaytarilmaydi.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span><i class="fa-solid fa-clock text-green"></i> 4. Vaqtim tugasa yoki uzaytirmoqchi bo'lsam nima
+                bo'ladi?</span>
+              <i class="fa-solid fa-chevron-down faq-arrow"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Vaqtingiz tugashidan 15 daqiqa oldin adminga xabar bersangiz, agar akkaunt boshqa birov tomonidan band
+                qilinmagan bo'lsa, arenda vaqtini bemalol uzaytirishingiz mumkin.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span><i class="fa-solid fa-percent text-purple"></i> 5. Qanday tariflar mavjud?</span>
+              <i class="fa-solid fa-chevron-down faq-arrow"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Bizda har bir akkaunt uchun 4 xil qulay tariflar mavjud: <b>3 soatlik tezkor harid, Kunduzgi (09:00 -
+                  19:00), Tungi (21:00 - 09:00) hamda 24 soatlik to'liq kunlik harid</b>!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Telegram Channel CTA Banner -->
+      <section class="cta-banner glass-panel">
+        <div class="cta-content">
+          <div class="cta-text">
+            <h3>Telegram Kanalimizga A'zo Bo'ling!</h3>
+            <p>Yangi VIP/TOP akkauntlar, har kungi skidkalar va maxsus e'lonlar rasmiy kanalimizda e'lon qilinadi.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="https://t.me/+c-ZCoeaTolcwY2M6" target="_blank" rel="noopener noreferrer"
+              class="cyber-btn telegram">
+              <i class="fa-brands fa-telegram"></i> TELEGRAM KANALGA O'TISH
+            </a>
+            <a href="https://t.me/WELCOME_ARENDA" target="_blank" rel="noopener noreferrer" class="cyber-btn-outline">
+              <i class="fa-solid fa-headset"></i> ADMIN BILAN BOG'LANISH
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="cyber-footer">
+      <div class="container footer-container">
+        <div class="footer-left">
+          <div class="footer-brand">WELCOME ARENDA</div>
+          <p>© 2026 Barcha huquqlar himoyalangan. PUBG Mobile Akkauntlar Arendasi.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://t.me/WELCOME_ARENDA" target="_blank"><i class="fa-brands fa-telegram"></i>
+            @WELCOME_ARENDA</a>
+          <span class="footer-sep">•</span>
+          <span>Ishonchli va Tezkor Xizmat</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Comparison Dock Bar (Sticky at bottom) -->
+    <div id="compare-dock" class="compare-dock hidden">
+      <div class="compare-dock-inner glass-panel">
+        <div class="compare-dock-info">
+          <i class="fa-solid fa-code-compare text-cyan"></i>
+          <span>Taqqoslanmoqda: <strong id="compare-dock-count">0/3</strong> ta akkaunt</span>
+        </div>
+        <div class="compare-dock-thumbnails" id="compare-dock-thumbnails"></div>
+        <div class="compare-dock-actions">
+          <button class="cyber-btn primary small" onclick="openCompareModal()">
+            <i class="fa-solid fa-chart-simple"></i> Taqqoslash
+          </button>
+          <button class="cyber-btn-outline small" onclick="clearCompareList()" title="Tozalash">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+      <a href="#accounts-section" class="mobile-nav-item active" onclick="handleMobileNavClick('all')">
+        <i class="fa-solid fa-gamepad"></i>
+        <span>Akkauntlar</span>
+      </a>
+      <a href="#accounts-section" class="mobile-nav-item" onclick="handleMobileNavClick('fav')">
+        <i class="fa-solid fa-heart"></i>
+        <span>Sevimlilar</span>
+        <span class="mobile-nav-badge" id="mobile-fav-badge">0</span>
+      </a>
+      <button class="mobile-nav-item" onclick="openCompareModal()">
+        <i class="fa-solid fa-code-compare"></i>
+        <span>Taqqoslash</span>
+        <span class="mobile-nav-badge" id="mobile-compare-badge">0</span>
+      </button>
+      <a href="#faq-section" class="mobile-nav-item">
+        <i class="fa-solid fa-circle-question"></i>
+        <span>FAQ</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ================= 8. MODALS ================= -->
+
+  <!-- Account Details & Calculator Modal -->
+  <div id="account-modal" class="modal-overlay hidden">
+    <div class="modal-backdrop" onclick="closeModal('account-modal')"></div>
+    <div class="modal-dialog glass-panel account-detail-dialog">
+      <button class="modal-close-btn" onclick="closeModal('account-modal')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body" id="account-modal-body">
+        <!-- Dynamically injected details & calculator -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Compare Modal (Side-by-Side Comparison Matrix) -->
+  <div id="compare-modal" class="modal-overlay hidden">
+    <div class="modal-backdrop" onclick="closeModal('compare-modal')"></div>
+    <div class="modal-dialog glass-panel compare-dialog">
+      <button class="modal-close-btn" onclick="closeModal('compare-modal')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-code-compare text-cyan"></i> Akkauntlarni Taqqoslash</h3>
+        <p class="modal-sub">Tanlangan akkauntlarning xususiyatlari, skinlari va narxlarini solishtiring</p>
+      </div>
+
+      <div class="compare-table-wrap" id="compare-table-wrap">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Edit / Add Account Modal -->
+  <div id="admin-account-modal" class="modal-overlay hidden">
+    <div class="modal-backdrop" onclick="closeModal('admin-account-modal')"></div>
+    <div class="modal-dialog glass-panel">
+      <button class="modal-close-btn" onclick="closeModal('admin-account-modal')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-header">
+        <h3 id="admin-modal-title"><i class="fa-solid fa-gear"></i> Akkauntni Tahrirlash</h3>
+      </div>
+
+      <form id="admin-account-form" class="admin-form">
+        <input type="hidden" id="edit-acc-id">
+
+        <div class="form-row">
+          <div class="input-group">
+            <label>Akkaunt Nomi / ID</label>
+            <input type="text" id="edit-acc-title" required placeholder="Masalan: VIP ACC #12">
+          </div>
+          <div class="input-group">
+            <label>Toifasi (Kategoriya)</label>
+            <select id="edit-acc-category" required>
+              <option value="VIP">⭐ VIP</option>
+              <option value="TOP">🔥 TOP</option>
+              <option value="CHEAP">⚡ CHEAP</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-group">
+            <label>Holati (Status)</label>
+            <select id="edit-acc-status" required>
+              <option value="free">🟢 Bo'sh (Mavjud)</option>
+              <option value="busy">🔴 Band (Arendada)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Narxi</label>
+            <input type="text" id="edit-acc-price" required placeholder="15,000 so'm / soat">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Telegram Post Havolasi (URL)</label>
+          <input type="url" id="edit-acc-link" required placeholder="https://t.me/Jorayev_gg3/...">
+        </div>
+
+        <div class="input-group">
+          <label>Akkaunt To'liq Xususiyatlari (Har bir qator alohida)</label>
+          <textarea id="edit-acc-raw" rows="6"
+            placeholder="88 COLLECTION ‼️&#10;425+ TA MIFIK TOP ‼️&#10;FARAON MAXX 7 LVL ‼️"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="cyber-btn-outline" onclick="closeModal('admin-account-modal')">Bekor
+            qilish</button>
+          <button type="submit" class="cyber-btn primary">
+            <i class="fa-solid fa-floppy-disk"></i> Saqlash
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mobile QR Code / Network Info Modal -->
+  <div id="qr-modal" class="modal-overlay hidden">
+    <div class="modal-backdrop" onclick="closeModal('qr-modal')"></div>
+    <div class="modal-dialog glass-panel qr-dialog">
+      <button class="modal-close-btn" onclick="closeModal('qr-modal')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="qr-modal-content">
+        <div class="qr-icon-wrap">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+        </div>
+        <h3>Telefonda Ochish</h3>
+        <p>Ushbu sayt kompyuter va barcha smartfonlar (iOS / Android) uchun to'liq moslashtirilgan.</p>
+
+        <div class="network-info-card">
+          <span class="net-title">Lokal Tarmoq Havolasi:</span>
+          <div class="net-url-wrap">
+            <input type="text" id="local-ip-url" readonly value="https://believe-smile-concerns-change.trycloudflare.com">
+            <button class="cyber-btn small" onclick="copyLocalUrl()">
+              <i class="fa-solid fa-copy"></i> Nusxa
+            </button>
+          </div>
+          <small><i class="fa-solid fa-globe"></i> Ushbu global havola orqali har qanday telefondan (Samsung, iPhone) to'g'ridan-to'g'ri ochishingiz mumkin!</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/app.js"></script>
+</body>
+
+</html>
