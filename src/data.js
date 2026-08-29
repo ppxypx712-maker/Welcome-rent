@@ -598,6 +598,41 @@ APOLLO EVO LEDNIK‼️
 APOLLO EVO ZAKAT‼️`
   },
 
+ {
+    id: 'top-8',
+    category: 'TOP',
+    title: 'TOP ACC #8',
+    telegramUrl: 'https://t.me/c/2115084909/4102',
+    status: 'free',
+    price: "3 soat: 30.000 UZS",
+    image: '/assets/accounts/acc-top-8.jpg',
+    rawDetails: 
+`🔝 79 COLLECTION ‼️
+231+ TA MIFIK TOP ‼️
+19+ TA ULTIMATE ‼️
+FARAON MAXX 6 LVL‼️
+VORON MAXX 6 LVL ‼️
+JOKKER 3 LVL ‼️
+
+7 TA ORQA FON ‼️
+96 TA PROKACHKA ‼️
+6 TA MAX MIFIK ARUJA‼️
+33 TA KILCHAT ARUJA‼️
+416 FULL‼️
+416 FULL‼️
+416 FULL‼️
+416 FULL‼️
+AKM FULL‼️
+AKM FULL‼️
+
+18 TA SUPPER CAR ‼️
+BUGATTI SHEDEVR ‼️
+POGANI SHEDEVR ‼️
+
+`
+  },
+
+
   // ================= CHEAP ACCOUNTS (9 ta) =================
   {
     id: 'cheap-1',
